@@ -15,7 +15,7 @@
 - Your todo list should be fully functional and you should design it however you'd like. Feel free to get creative here. I have supplied a gif for you to see what the MVP functionality is required to look like over the course of the two days.
 
 ![Todo App MVP](todo.gif)
-
+ 
 - Your todo data should be an array of objects that look a lot like this:
 
 ```js
@@ -29,7 +29,7 @@
     task: 'Bake Cookies',
     id: 1528817084358,
     completed: false
-  }
+  } 
 ];
 ```
 
