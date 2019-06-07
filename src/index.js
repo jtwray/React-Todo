@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'
-import TodoList from "./components/TodoComponents/TodoList.js";
+import TodoList from "./components/TodoComponents/TodoList";
+import TodoForm from "./components/TodoComponents/TodoForm";
 
 const taskslistarray =[
     {
@@ -37,16 +38,31 @@ toggleItemObj = id => {
         return itemObj;
         })
     
-    });   
+    }); 
+     
+}  
+   addItem = item => {
+        const copiedTasks = this.state.taskslistarray.slice();
+        
+        const newItem = {
+            task:item,
+            id: Date.now(),
+            completed: false
+        };
+        copiedTasks.push(newItem);
+        console.log(copiedTasks);
+        this.setState({ taskslistarray: copiedTasks });    
 }; 
 render() { 
     return (
         <div className="App">
             <div className="header">
                 <h1> ToDoList</h1>
+                <TodoForm addItem={this.addItem} />
             </div>
-            <TodoList taskslistarray={this.state.taskslistarray}
-                      toggleItemObj={this.toggleItemObj}
+            <TodoList
+              taskslistarray={this.state.taskslistarray}
+              toggleItemObj={this.toggleItemObj}
             />
         </div>
     );
