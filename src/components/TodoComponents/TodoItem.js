@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 const TodoItem = props => {
     console.log(props)
@@ -6,7 +6,7 @@ const TodoItem = props => {
 essentially your calling the function right here... 
 wrap it in another function instance like shown to wait & happen onClick. */}
   return (
-    <div className={
+    <div                className={
         `itemObj${props.itemObj.completed ?" completed" : ''}`}
          onClick={()=>props.toggleItemObj(props.itemObj.id)}>
       <p>{props.itemObj.task}</p>

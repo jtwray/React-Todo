@@ -7,11 +7,13 @@ const TodoList = props => {
     <div>
       {props.taskslistarray.map(itemObj => (
      
-        <TodoItem key={itemObj.id} itemObj={itemObj} toggleItemObj={props.toggleItemObj}/>
-      ))}
+        <TodoItem key={itemObj.id}
+                  itemObj={itemObj} 
+                  toggleItemObj={props.toggleItemObj}
+                  />)
+      )}
     </div>
   );
-}; 
-
+};    
 
 export default TodoList;
