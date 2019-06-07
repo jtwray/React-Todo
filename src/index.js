@@ -24,14 +24,20 @@ class App extends React.Component{
         };
     }
 toggleItemObj = id => {
-    const NewList = this.state.taskslistarray.map(itemObj => {
-        if(itemObj.id ===id){itemObj.completed = !itemObj.completed;
+    this.setState({ 
+        taskslistarray:  this.state.taskslistarray.map(itemObj => {
+        if(itemObj.id ===id){
+            return{
+
+                ...itemObj,
+                completed: !itemObj.completed
+            }
+            
+        }
         return itemObj;
-    } else { 
-        return itemObj;
-    }
-    })
-    this.setState({ taskslistarray: NewList});   
+        })
+    
+    });   
 }; 
 render() { 
     return (
