@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import './index.css'
 import TodoList from "./components/TodoComponents/TodoList.js";
 
 const taskslistarray =[
@@ -24,9 +24,16 @@ class App extends React.Component{
         };
     }
 toggleItemObj = id => {
-    console.log(id);
+    const NewList = this.state.taskslistarray.map(itemObj => {
+        if(itemObj.id ===id){itemObj.completed = !itemObj.completed;
+        return itemObj;
+    } else { 
+        return itemObj;
+    }
+    })
+    this.setState({ taskslistarray: NewList});   
 }; 
-render() {
+render() { 
     return (
         <div className="App">
             <div className="header">
