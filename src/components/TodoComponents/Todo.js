@@ -1,9 +1,8 @@
-// import React, {Component} from 'react';
-import React from "react"l;
+import React from "react";
 
 function Todo(props) {
     return(
-        <div 
+        <div> 
         <p> {props.todoItemsList.task}</p>
         </div>
     );

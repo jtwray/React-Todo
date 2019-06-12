@@ -6,7 +6,7 @@ class TodoForm extends React.Component {
 		this.state = {
 			taskItem: ""
 		};
-	}
+	} 
 	handleChanges = e => {
 		this.setState({ taskItem: e.target.value });
 	};
@@ -14,7 +14,10 @@ class TodoForm extends React.Component {
 	submitItem = e => {
 		e.preventDefault();
 		this.props.addItem(this.state.taskItem);
-		this.setState({ taskItem: "" });
+		this.setState({ taskItem: "" 
+	}, () => {
+        window.localStorage.setItem('savedList', JSON.stringify(this.state.lists));
+	});
 	};
 
 	render() {
