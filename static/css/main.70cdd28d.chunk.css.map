@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,WACI,4BAA4B,CAC5B,UAAU,CACV,WAEJ","file":"main.70cdd28d.chunk.css","sourcesContent":[".completed{\r\n    text-decoration:line-through;\r\n    color:grey;\r\n    opacity:.85;\r\n\r\n}"]}
