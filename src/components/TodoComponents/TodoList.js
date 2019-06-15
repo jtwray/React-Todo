@@ -5,7 +5,7 @@ const TodoList = props => {
 	
 	return (
 		<div>
-		{props.taskslistarray.map(itemObj => (
+		{(props.taskslistarray || []).map(itemObj => (
 			<TodoItem
 				key={itemObj.id}
 				itemObj={itemObj}
