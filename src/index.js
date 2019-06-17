@@ -4,24 +4,27 @@ import "./index.css";
 import TodoList from "./components/TodoComponents/TodoList";
 import TodoForm from "./components/TodoComponents/TodoForm";
 
-const taskslistarray = [
-    {
-        task: "Organize Garage",
-        id: 1528817077286,
-        completed: false
-    },
-    {
-        task: "Bake Cookies",
-        id: 1528817084358,
-        completed: false
-    }
-];
+
 
 class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            taskslistarray
+            taskslistarray: 
+                [
+            {
+                task: "Organize Garage",
+                id: 1528817077286,
+                completed: false
+            },
+            {
+                task: "Bake Cookies",
+                id: 1528817084358,
+                completed: false
+            }
+        ]
+        
+            
         };
     }
     toggleItemObj = id => {
