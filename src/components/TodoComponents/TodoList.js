@@ -1,15 +1,15 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-const TodoList = props => {
-  console.log(props, "todolist")
+const TodoList = ({taskslistarray,toggleItemObj,itemObj}) => {
+  console.log(taskslistarray, "todolist")
   return (
     <div>
-      {props.taskslistarray.map(itemObj => (
+      {taskslistarray.map(itemObj => (
      
         <TodoItem key={itemObj.id}
                   itemObj={itemObj} 
-                  toggleItemObj={props.toggleItemObj}
+                  toggleItemObj={toggleItemObj}
                   />)
       )}
     </div>
