@@ -9,11 +9,23 @@ export class TodoSearch extends React.Component {
 
     }
     handleSearch = e => {
-        this.props.handleChanges(e);
-        this.props.searchTodos(this.props.searchTerm)
+       this.setState({searchTerm:e.target.value}) // this.props.handleChanges(e);
+        // this.props.searchTodos(this.props.searchTerm)
        
     }
+    static getDerivedStateFromProps(props, state) {
+		if (props.taskslistarray !== state.prevPropsList ||
+			state.prevSearchTerm !== state.searchTerm) {
+			return {
+				prevPropsList: props.taskslistarray,
+				prevSearchTerm: state.searchTerm,
+				searchResults: props.taskslistarray.filter(item => item.task.includes(state.searchTerm))
+			}
+		}
+		return null;
 
+
+	}
     render(props) {
         // let searchResults = this.props.taskslistarray.filter((taskObj) => {
         //     return taskObj.task.toLowerCase().trim().indexOf(this.props.searchTerm.toLowerCase().trim()) !== -1;
@@ -33,12 +45,12 @@ export class TodoSearch extends React.Component {
                     name="searchTerm"
                     placeholder="🔍"
                     onChange={this.handleSearch}
-                    value={this.props.searchTerm}
+                    value={this.state.searchTerm}
 
 
                 />
                 <ul><label>searchResults</label>
-                    {this.props.searchResults&&this.props.searchResults.map((itemObj) => {
+                    {this.state.searchResults&&this.state.searchResults.map((itemObj) => {
                         
                         return(<TodoItem
                         itemObj={itemObj}
