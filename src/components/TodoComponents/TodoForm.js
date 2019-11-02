@@ -3,33 +3,38 @@ import React from "react";
 class TodoForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			taskItem: ""
-		};
+		this.state={
+			taskItem:"",
+		}
+	
 	}
 	handleChanges = e => {
-		this.setState({ taskItem: e.target.value });
+		this.setState({ [e.target.name]: e.target.value });
+		
 	};
 
-	submitItem=e => {
-		const {taskItem}=this.state;
-		const {addItem}=this.props;
+	submitItem = e => {
+	
+	
 		e.preventDefault();
-		addItem(taskItem);
-		this.setState({ taskItem: "" });
+		this.props.addItem(this.props.taskItem);
+	 
+		
 	};
 
 	render() {
-		const {taskItem}=this.state;
-		const {handleChanges,submitItem}=this;
+		
+		const { submitItem } = this;
 		return (
 			<form onSubmit={submitItem}>
 				<input
 					type='text'
+					name="taskItem"
 					placeholder='add task =)'
-					value={taskItem}
-					onChange={handleChanges}
+					onChange={this.props.handleChanges}
+					value={this.props.taskItem}
 				/>
+			
 				<button>Add</button>
 			</form>
 		);
