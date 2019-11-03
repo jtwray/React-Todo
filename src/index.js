@@ -21,7 +21,7 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            taskslistarray
+            taskslistarray:[]
         };
     }
     toggleItemObj = id => {
@@ -44,7 +44,7 @@ class App extends React.Component {
             taskslistarray:parsedList,
         })
     };
-  
+  componentDidUpdate(){
     addItem = item => {  
         const copiedTasks = this.state.taskslistarray.slice();
 
@@ -63,7 +63,7 @@ class App extends React.Component {
         this.setState({ taskslistarray: completedTasks }, () => {
             window.localStorage.setItem('savedList', JSON.stringify(this.state.taskslistarray));
         });
-    };
+    }};
 
     render() { 
         return (
