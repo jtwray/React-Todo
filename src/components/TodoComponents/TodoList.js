@@ -5,7 +5,7 @@ const TodoList = ({ taskslistarray, toggleItemObj, itemObj, searchResults }) => 
   console.log(taskslistarray, "todolist")
   return (
     <div>
-      <><label>taskLIST</label>
+      <>
         {taskslistarray.map(itemObj => (
 
           <TodoItem

@@ -11,7 +11,7 @@ class App extends React.Component {
       taskslistarray: [{ task: "", completed: false, id: "" }],
       taskItem: "",
       searchTerm: "",
-      searchResults:"",
+      searchResults: ""
     };
   }
 
@@ -46,18 +46,16 @@ class App extends React.Component {
   };
 
   addItem = item => {
-  
     const nextItem = {
       task: item,
       id: Date.now(),
       completed: false
     };
-   
+
     const copiedTasks = [...this.state.taskslistarray, nextItem];
 
     this.setState({
-      taskslistarray: copiedTasks
-   ,
+      taskslistarray: copiedTasks,
       taskItem: ""
     });
   };
@@ -79,33 +77,33 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="header">
-          <h1> ToDoList</h1>
+          <label> ToDoList</label>
 
           <TodoForm
             addItem={addItem}
-            filterSearch={this.filterSearch}
             handleChanges={this.handleChanges}
             reset={this.reset}
             taskItem={this.state.taskItem}
           />
+          <button onClick={clearCompleted}>ClearCompleted</button>
+
+          <TodoList
+            taskslistarray={taskslistarray}
+            toggleItemObj={toggleItemObj}
+            searchResults={searchResults}
+            handleChanges={this.handleChanges}
+          />
         </div>
-
-        <TodoList
-          taskslistarray={taskslistarray}
-          toggleItemObj={toggleItemObj}
-          searchResults={searchResults}
-          handleChanges={this.handleChanges}
-        />
-        <button onClick={clearCompleted}>ClearCompleted</button>
-
-        <TodoSearch
-          searchResults={this.state.searchResults}
-          searchTodos={this.searchTodos}
-          searchTerm={this.state.searchTerm}
-          taskslistarray={this.state.taskslistarray}
-          toggleItemObj={toggleItemObj}
-          handleChanges={this.handleChanges}
-        />
+        <div>
+          <TodoSearch
+            searchResults={this.state.searchResults}
+            searchTodos={this.searchTodos}
+            searchTerm={this.state.searchTerm}
+            taskslistarray={this.state.taskslistarray}
+            toggleItemObj={toggleItemObj}
+            handleChanges={this.handleChanges}
+          />
+        </div>
       </div>
     );
   }
