@@ -4,3 +4,21 @@
     opacity:.85;
 
 }
+
+input{
+    display:flex;
+    justify-content: space-around;
+}
+
+label{
+   font-size: 2rem;
+   font-size: bold;
+}
+
+.App{
+
+   display: flex; 
+   margin: 10%;
+   padding: 2rem;
+   justify-content: space-around;
+}
