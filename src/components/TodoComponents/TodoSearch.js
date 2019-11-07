@@ -9,18 +9,19 @@ export class TodoSearch extends React.Component {
         }
 
     }
-    handleSearch = e => {
-     
-        // this.props.searchTodos(this.props.searchTerm)
-       
-    }
+  
     static getDerivedStateFromProps(props, state) {
 		if (props.taskslistarray !== state.prevPropsList ||
 			props.prevSearchTerm !== props.searchTerm) {
 			return {
 				prevPropsList: props.taskslistarray,
 				prevSearchTerm: props.searchTerm,
-				searchResults: props.taskslistarray.filter(item => item.task.includes(props.searchTerm))
+				searchResults: props.taskslistarray.filter(taskObj => {
+                    return taskObj.task
+                      .toLowerCase()
+                      .trim()
+                      .includes(props.searchTerm.toLowerCase().trim());
+                  })
 			}
 		}
 		return null;
@@ -39,7 +40,7 @@ export class TodoSearch extends React.Component {
         //       .includes(this.state.searchTerm.toLowerCase().trim())
         //   );
         return (
-            <>
+            <div className="header">
 <label>Search Results</label>
                 <input
                     type="text"
@@ -66,7 +67,7 @@ export class TodoSearch extends React.Component {
 
                    
                 </>
-            </>
+            </div>
         )
     }
 }

@@ -37,7 +37,7 @@ class App extends React.Component {
       return taskObj.task
         .toLowerCase()
         .trim()
-        .includes(this.state.searchTerm.toLowerCase().trim());
+        .includes(this.props.searchTerm.toLowerCase().trim());
     });
 
     this.setState({
