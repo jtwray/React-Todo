@@ -18,28 +18,19 @@ label {
 .App {
 
     display: flex;
-    margin: 10%;
-    padding: 2rem;
-    justify-content: space-around;
-}
-
-.App {
-    display: flex;
-    margin: 10%;
-    padding: 2rem;
-    justify-content: space-around;
-    background: aliceblue;
+    background: #f0f8ff;
     border-radius: 3px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.24), 0 2px 2px rgba(0, 0, 0, 0.36);
-    margin: 3px;
+    box-shadow: 0.5px 2px 3px rgba(0, 0, 0, .24), 0 2px 2px rgba(0, 0, 0, .36);
     padding: 1rem;
+    min-width: 300px;
+    flex-direction: column;
 }
 
 .header {
     padding: 1rem;
     background: ghostwhite;
     border: 1px solid gainsboro;
-    margin: .5rem;
+
 }
 
 label {
@@ -69,7 +60,7 @@ input {
 button {
     margin: 10px;
     border-radius: 4px;
-   -webkit-appearance: button;
+    -webkit-appearance: button;
     -webkit-writing-mode: horizontal-tb !important;
     text-rendering: auto;
     color: buttontext;
@@ -91,20 +82,45 @@ button {
     border-style: outset;
     border-color: buttonface;
     border-image: initial;
+    min-width: 195px;
+    height: 50px;
 }
 
 p {
-    margin: 10px 0;
+
     padding: 5px 8px;
-    text-shadow: 0 1px 3px rgba(0,0,0,.25);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .25);
     font-family: cursive;
-    box-shadow: 0 1px 3px rgba(0,0,0,.48), 0 2px 3px rgba(0,0,0,.96), inset 0 20px 7px rgba(1,45,45,.05);
-min-height:30px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .48), 0 2px 3px rgba(0, 0, 0, .96), inset 0 20px 7px rgba(1, 45, 45, .05);
+    min-height: 30px;
+    border-radius: 5px;
+    animation-name: HOVER;
+    animation-duration: .5s;
+    animation-direction: both;
+}
+
+/* @keyframes duration | timing-function | delay | 
+iteration-count | direction | fill-mode | play-state | name 
+animation: 3s ease-in 1s 2 reverse both paused slidein;
+*/
+
+@keyframes HOVER {
+    from {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .48),
+            0 2px 3px rgba(0, 0, 0, .96),
+            inset 0 20px 7px rgba(1, 45, 45, .05);
+    }
+
+    to {
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.24),
+            0 12px 12px rgba(0, 0, 0, 0.36),
+            inset -3px -2px 6px 2px rgba(34, 35, 39, 0.7);
+    }
 }
 
 p:hover {
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.24), 0 12px 12px rgba(0, 0, 0, 0.36), inset -3px -2px 6px 2px rgba(34, 35, 39, 0.7);
-    border-radius: 4px;
+
 }
 
 ul {
