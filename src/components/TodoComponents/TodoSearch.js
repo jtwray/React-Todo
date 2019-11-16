@@ -11,13 +11,15 @@ export class TodoSearch extends React.Component {
     }
   
     static getDerivedStateFromProps(props, state) {
-		if (props.taskslistarray !== state.prevPropsList ||
+    
+        
+        if (props.taskslistarray !== state.prevPropsList ||
 			props.prevSearchTerm !== props.searchTerm) {
 			return {
 				prevPropsList: props.taskslistarray,
 				prevSearchTerm: props.searchTerm,
 				searchResults: props.taskslistarray.filter(taskObj => {
-                    return taskObj.task
+                    return `${taskObj.task} `
                       .toLowerCase()
                       .trim()
                       .includes(props.searchTerm.toLowerCase().trim());
@@ -54,7 +56,8 @@ export class TodoSearch extends React.Component {
                 <ul>
                     {this.state.searchResults&&this.state.searchResults.map((itemObj) => {
                         
-                        return(<TodoItem
+                        return(
+                        <TodoItem
                         itemObj={itemObj}
                         toggleItemObj={this.props.toggleItemObj}
                         key={itemObj.id}
