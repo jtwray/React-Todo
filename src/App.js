@@ -8,10 +8,9 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      taskslistarray: [{ task: "", completed: false, id: "" }],
-      taskItem: "",
+      taskslistarray: JSON.parse(localStorage.getItem(`taskslistarray`)) || [],
       searchTerm: "",
-      searchResults:"",
+      searchResults: ""
     };
   }
 
@@ -33,12 +32,11 @@ class App extends React.Component {
   searchTodos = searchTerm => {
     const tasklistcopy = [...this.state.taskslistarray];
 
-    const tlcFilter = tasklistcopy.filter(taskObj => {
-      return taskObj.task
-        .toLowerCase()
-        .trim()
-        .includes(this.state.searchTerm.toLowerCase().trim());
-    });
+    const tlcFilter = tasklistcopy.filter(taskObj => taskObj.task
+      .toLowerCase()
+      .trim()
+      .includes(this.props.searchTerm.toLowerCase().trim())
+    );
 
     this.setState({
       searchResults: tlcFilter
@@ -46,30 +44,33 @@ class App extends React.Component {
   };
 
   addItem = item => {
-  
+
     const nextItem = {
       task: item,
       id: Date.now(),
       completed: false
     };
-   
-    const copiedTasks = [...this.state.taskslistarray, nextItem];
 
+    const copiedTasks = [...this.state.taskslistarray, nextItem];
     this.setState({
-      taskslistarray: copiedTasks
-   ,
+      taskslistarray: copiedTasks,
       taskItem: ""
     });
+    localStorage.setItem(`taskslistarray`, JSON.stringify(copiedTasks))
   };
 
   handleChanges = e => {
+    
     this.setState({ [e.target.name]: e.target.value });
   };
 
   clearCompleted = () => {
+
     const copiedTasks = this.state.taskslistarray.slice();
-    const completedTasks = copiedTasks.filter(item => !item.completed);
-    this.setState({ taskslistarray: completedTasks });
+    const incompletedTasks = copiedTasks.filter(item => !item.completed);
+    this.setState({ taskslistarray: incompletedTasks });
+    localStorage.setItem(`taskslistarray`, JSON.stringify(copiedTasks.filter(item => !item.completed)))
+
   };
 
   render() {
@@ -79,33 +80,33 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="header">
-          <h1> ToDoList</h1>
+          <label> ToDoList</label>
 
           <TodoForm
             addItem={addItem}
-            filterSearch={this.filterSearch}
             handleChanges={this.handleChanges}
             reset={this.reset}
             taskItem={this.state.taskItem}
           />
+          <button onClick={clearCompleted}>ClearCompleted</button>
+
+          <TodoList
+            taskslistarray={taskslistarray}
+            toggleItemObj={toggleItemObj}
+            searchResults={searchResults}
+            handleChanges={this.handleChanges}
+          />
         </div>
-
-        <TodoList
-          taskslistarray={taskslistarray}
-          toggleItemObj={toggleItemObj}
-          searchResults={searchResults}
-          handleChanges={this.handleChanges}
-        />
-        <button onClick={clearCompleted}>ClearCompleted</button>
-
-        <TodoSearch
-          searchResults={this.state.searchResults}
-          searchTodos={this.searchTodos}
-          searchTerm={this.state.searchTerm}
-          taskslistarray={this.state.taskslistarray}
-          toggleItemObj={toggleItemObj}
-          handleChanges={this.handleChanges}
-        />
+        <div>
+          <TodoSearch
+            searchResults={this.state.searchResults}
+            searchTodos={this.searchTodos}
+            searchTerm={this.state.searchTerm}
+            taskslistarray={this.state.taskslistarray}
+            toggleItemObj={toggleItemObj}
+            handleChanges={this.handleChanges}
+          />
+        </div>
       </div>
     );
   }
